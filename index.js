@@ -3,10 +3,7 @@ const axios = require('axios');
 const path = require('path');
 const dotenv = require('dotenv');
 const cors = require('cors');
-app.use(cors({
-    origin: 'https://your-github-username.github.io',
-    optionsSuccessStatus: 200
-}));
+
 
 
 dotenv.config();
@@ -16,6 +13,11 @@ const PORT = process.env.PORT || 5000;
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
+
+app.use(cors({
+    origin: 'https://your-github-username.github.io',
+    optionsSuccessStatus: 200
+}));
 
 // API route
 app.get('/api/videos', async (req, res) => {
@@ -38,6 +40,8 @@ app.get('/api/videos', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+
 
 // All other GET requests not handled before will return the React app
 app.get('*', (req, res) => {
