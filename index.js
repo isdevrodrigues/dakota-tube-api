@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
 app.use(cors({
-    origin: 'https://main--dakota-tube.netlify.app/',
+    origin: 'https://dakota-tube.netlify.app/',
     optionsSuccessStatus: 200
 }));
 
