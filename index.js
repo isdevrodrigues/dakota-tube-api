@@ -14,10 +14,23 @@ const PORT = process.env.PORT || 5000;
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
+const allowedOrigins = [
+    'https://main--dakota-tube.netlify.app',
+    'https://dakota-tube.netlify.app',
+
+];
+
 app.use(cors({
-    origin: 'https://dakota-tube.netlify.app/',
+    origin: function (origin, callback) {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     optionsSuccessStatus: 200
 }));
+
 
 // API route
 app.get('/api/videos', async (req, res) => {
