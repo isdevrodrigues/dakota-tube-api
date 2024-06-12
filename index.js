@@ -2,6 +2,12 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const dotenv = require('dotenv');
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://your-github-username.github.io',
+    optionsSuccessStatus: 200
+}));
+
 
 dotenv.config();
 
